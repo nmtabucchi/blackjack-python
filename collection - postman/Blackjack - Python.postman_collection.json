@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "081d7589-ce05-4366-b168-6ae50dbb15b0",
+		"name": "Blackjack - Python",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33467352"
+	},
+	"item": [
+		{
+			"name": "deal",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/blackjack/deal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"blackjack",
+						"deal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "hit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/blackjack/hit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"blackjack",
+						"hit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stand",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/blackjack/stand",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"blackjack",
+						"stand"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
