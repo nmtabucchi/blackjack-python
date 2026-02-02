@@ -60,9 +60,12 @@ def calcular_puntos(cartas):
     
     return total
 
-@router.get("/deal")
-async def deal():
+@router.get("/repartir")
+async def repartir():
     partida["mazo"] = crear_mazo()
+    """
+    random.shuffle: cambia el orden de los elementos de una lista
+    """
     random.shuffle(partida["mazo"])
 
     partida["jugador"] = [partida["mazo"].pop(), partida["mazo"].pop()]
@@ -80,10 +83,10 @@ async def deal():
         }
     }
 
-@router.get("/hit")
-async def hit():
+@router.get("/solicitar_carta")
+async def solicitar_carta():
     if partida["terminada"]:
-        return {"error": "La partida ya terminó"}
+        return {"error": "La partida ya terminó"}    
 
     carta = partida["mazo"].pop()
     partida["jugador"].append(carta)
@@ -103,8 +106,8 @@ async def hit():
         "puntos": puntos
     }
 
-@router.get("/stand")
-async def stand():
+@router.get("/detener")
+async def detener():
     partida["terminada"] = True
 
     # Crupier reparte hasta 17 o más
