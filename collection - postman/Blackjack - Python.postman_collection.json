@@ -7,64 +7,136 @@
 	},
 	"item": [
 		{
-			"name": "deal",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/blackjack/deal",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"blackjack",
-						"deal"
-					]
+			"name": "v1",
+			"item": [
+				{
+					"name": "repartir",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/blackjack_v1/repartir",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"blackjack_v1",
+								"repartir"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "solicitar_carta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/blackjack_v1/solicitar_carta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"blackjack_v1",
+								"solicitar_carta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "plantarse",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/blackjack_v1/plantarse",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"blackjack_v1",
+								"plantarse"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "hit",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/blackjack/hit",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"blackjack",
-						"hit"
-					]
+			"name": "v2",
+			"item": [
+				{
+					"name": "nueva-partida",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/blackjack_v2/nueva_partida",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"blackjack_v2",
+								"nueva_partida"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "solicitar_carta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/blackjack_v2/solicitar_carta/06894633-011d-4666-8d05-e0aee2e45dda",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"blackjack_v2",
+								"solicitar_carta",
+								"06894633-011d-4666-8d05-e0aee2e45dda"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "plantarse",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/blackjack_v2/plantarse/bccfa4b1-74e9-4557-949e-0d1d9b579dc7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"blackjack_v2",
+								"plantarse",
+								"bccfa4b1-74e9-4557-949e-0d1d9b579dc7"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "stand",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/blackjack/stand",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"blackjack",
-						"stand"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	]
 }
