@@ -2,10 +2,13 @@ from fastapi import APIRouter, status
 import random
 
 router = APIRouter(
-    prefix="/blackjack",
-    tags=["blackjack"],
+    prefix="/blackjack_v1",
+    tags=["blackjack_v1"],
     responses={status.HTTP_404_NOT_FOUND: {"message": "No encontrado"}}
 )
+
+#Version v1
+#Se ejecutan las funciones de repetir, solicitar y detener
 
 # Estructura de estado (memoria)
 partida = {
@@ -88,6 +91,12 @@ async def solicitar_carta():
     if partida["terminada"]:
         return {"error": "La partida ya terminó"}    
 
+    puntos_i = calcular_puntos(partida["jugador"])
+    if puntos_i == 21:
+        return {
+            "mensaje": "No se puede solicitar más cartas"         
+        }
+
     carta = partida["mazo"].pop()
     partida["jugador"].append(carta)
 
@@ -97,19 +106,22 @@ async def solicitar_carta():
         partida["terminada"] = True
         return {
             "mensaje": "Jugador se pasó",
-            "cartas": partida["jugador"],
-            "puntos": puntos
+            "puntos": puntos,
+            "cartas": partida["jugador"]            
         }
 
     return {
-        "cartas": partida["jugador"],
-        "puntos": puntos
+        "puntos": puntos,
+        "cartas": partida["jugador"]        
     }
 
-@router.get("/detener")
-async def detener():
-    partida["terminada"] = True
-
+@router.get("/plantarse")
+async def plantarse():
+    if (partida["terminada"] == True):
+         return {
+            "mensaje": "Jugador se pasó"
+        }
+    
     # Crupier reparte hasta 17 o más
     while calcular_puntos(partida["crupier"]) < 17:
         partida["crupier"].append(partida["mazo"].pop())
@@ -127,11 +139,11 @@ async def detener():
     return {
         "resultado": resultado,
         "jugador": {
-            "cartas": partida["jugador"],
-            "puntos": puntos_jugador
+            "puntos": puntos_jugador,
+            "cartas": partida["jugador"]            
         },
         "crupier": {
-            "cartas": partida["crupier"],
-            "puntos": puntos_crupier
+            "puntos": puntos_crupier,
+            "cartas": partida["crupier"]            
         }
     }
