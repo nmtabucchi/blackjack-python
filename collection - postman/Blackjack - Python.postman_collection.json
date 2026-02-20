@@ -15,14 +15,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/blackjack_v1/repartir",
+							"raw": "http://localhost:8000/v1/blackjack/repartir",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"blackjack_v1",
+								"v1",
+								"blackjack",
 								"repartir"
 							]
 						}
@@ -35,14 +36,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/blackjack_v1/solicitar_carta",
+							"raw": "http://localhost:8000/v1/blackjack/solicitar_carta",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"blackjack_v1",
+								"v1",
+								"blackjack",
 								"solicitar_carta"
 							]
 						}
@@ -55,14 +57,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/blackjack_v1/plantarse",
+							"raw": "http://localhost:8000/v1/blackjack/plantarse",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"blackjack_v1",
+								"v1",
+								"blackjack",
 								"plantarse"
 							]
 						}
@@ -75,62 +78,138 @@
 			"name": "v2",
 			"item": [
 				{
-					"name": "nueva-partida",
+					"name": "new-user",
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dni\": \"32737120\",\r\n    \"username\": \"tabu\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8000/blackjack_v2/nueva_partida",
+							"raw": "http://localhost:8000/user/new-user",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"blackjack_v2",
-								"nueva_partida"
+								"user",
+								"new-user"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "solicitar_carta",
+					"name": "info-user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dni\": \"32737124\",\r\n    \"username\": \"tabu\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8000/blackjack_v2/solicitar_carta/06894633-011d-4666-8d05-e0aee2e45dda",
+							"raw": "http://localhost:8000/user/info-user?dni=32737120",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"blackjack_v2",
-								"solicitar_carta",
-								"06894633-011d-4666-8d05-e0aee2e45dda"
+								"user",
+								"info-user"
+							],
+							"query": [
+								{
+									"key": "dni",
+									"value": "32737120"
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "plantarse",
+					"name": "new-game",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/blackjack_v2/plantarse/bccfa4b1-74e9-4557-949e-0d1d9b579dc7",
+							"raw": "http://localhost:8000/v2/blackjack/new-game?dni=32737120",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"blackjack_v2",
-								"plantarse",
-								"bccfa4b1-74e9-4557-949e-0d1d9b579dc7"
+								"v2",
+								"blackjack",
+								"new-game"
+							],
+							"query": [
+								{
+									"key": "dni",
+									"value": "32737120"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "hit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v2/blackjack/hit/e52dc27a-7085-431f-b33d-ae13e19aaf53",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v2",
+								"blackjack",
+								"hit",
+								"e52dc27a-7085-431f-b33d-ae13e19aaf53"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "stand",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v2/blackjack/stand/e52dc27a-7085-431f-b33d-ae13e19aaf53",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v2",
+								"blackjack",
+								"stand",
+								"e52dc27a-7085-431f-b33d-ae13e19aaf53"
 							]
 						}
 					},
