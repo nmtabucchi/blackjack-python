@@ -1,15 +1,16 @@
 from fastapi import APIRouter, status
 from uuid import uuid4
 import random
+from routers.dataBase.users_db import search_uuid
 
 router = APIRouter(
-    prefix="/blackjack_v2",
-    tags=["blackjack"],
+    prefix="/v2/blackjack",
+    tags=["Black Jack v2"],
     responses={status.HTTP_404_NOT_FOUND: {"message": "No encontrado"}}
 )
 
 #Version v2
-#Se ejecuta una partida por usuario
+#Se ejecuta una partida por usuario + base de datos
 
 # Cartas
 valores = {
@@ -52,10 +53,10 @@ def calcular_puntos(cartas):
     
     return total
 
-@router.post("/nueva_partida")
-async def nueva_partida():
-    user_id = str(uuid4())
-
+@router.post("/new-game")
+async def new_game(dni: int):
+    user_id = search_uuid(dni)
+    
     mazo = [
         {"valor": v, "palo": p, "puntos": pts}
         #Recorre cada valor de carta:
@@ -81,8 +82,9 @@ async def nueva_partida():
         "mensaje": "Partida creada"
     }
 
-@router.post("/solicitar_carta/{user_id}")
-async def solicitar_carta(user_id: str):
+@router.post("/hit/{user_id}")
+#Solicita carta
+async def hit(user_id: str):
     partida = partidas.get(user_id)
 
     if not partida:
@@ -112,8 +114,9 @@ async def solicitar_carta(user_id: str):
         "carta": partida["jugador"]        
     }
 
-@router.post("/plantarse/{user_id}")
-async def plantarse(user_id: str):
+@router.post("/stand/{user_id}")
+#Plantarse
+async def stand(user_id: str):
     partida = partidas.get(user_id)
 
     if not partida:

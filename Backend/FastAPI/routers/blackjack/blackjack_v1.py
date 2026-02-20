@@ -2,8 +2,8 @@ from fastapi import APIRouter, status
 import random
 
 router = APIRouter(
-    prefix="/blackjack_v1",
-    tags=["blackjack_v1"],
+    prefix="/v1/blackjack",
+    tags=["Black Jack v1"],
     responses={status.HTTP_404_NOT_FOUND: {"message": "No encontrado"}}
 )
 
