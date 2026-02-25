@@ -11,12 +11,13 @@ router = APIRouter(prefix="/user", tags=["Usuarios"],
     responses={status.HTTP_404_NOT_FOUND: {"message": "No encontrado"}})
 
 def search_user(field: str, key) -> UserResponseDTO | None:
-    try:
-        user = db_client.users.find_one({field: key})
-        user_data = user_schema(user)
-        return UserResponseDTO(**user_data)
-    except:
-        return {"error": "Usuario no existe"}
+    user = db_client.users.find_one({field: key})
+
+    if user is None:
+        return None
+
+    user_data = user_schema(user)
+    return UserResponseDTO(**user_data)
 
 def search_uuid(key):
     user = db_client.users.find_one({"dni": key})
@@ -26,9 +27,12 @@ def search_uuid(key):
 
 @router.post("/new-user", response_model=User, status_code=status.HTTP_201_CREATED)
 async def new_user(user: User):
-    if type(search_user("dni", user.dni)) == User:
+    existing_user = search_user("dni", user.dni)
+    if existing_user is not None:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Usuario ya existe")
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Usuario ya existe"
+        )
 
     user_dict = dict(user)
     user_dict["uuid"] = str(uuid4())
