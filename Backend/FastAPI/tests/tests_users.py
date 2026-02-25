@@ -63,14 +63,31 @@ class TestUsers(unittest.TestCase):
         self.assertEqual(data["saldo"], 20000.0)
 
     def test_user_exist(self):
-        self.client.post("", json={
+        self.client.post("/user/new-user", json={
             "dni": 28773990,
             "username": "redbull1234"
         })
 
-        response = self.client.post("", json={
+        response = self.client.post("/user/new-user", json={
             "dni": 28773990,
             "username": "audi1234"
         })
 
+        self.assertEqual(response.status_code, 400)
+        
+    def test_get_user_success(self):
+        response = self.client.get("/user/info-user?dni=34556332")
+
+        self.assertEqual(response.status_code, 200)
+        
+        data = response.json()
+
+        self.assertEqual(data["dni"], 34556332)
+        self.assertEqual(data["saldo"], 20000.0)
+        
+    def test_get_user_not_found(self):
+        response = self.client.get("/user/info-user?dni=34556334")
+
         self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.json()["detail"], "Usuario no encontrado")
+                

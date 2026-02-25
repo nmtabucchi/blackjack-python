@@ -45,4 +45,10 @@ async def new_user(user: User):
 
 @router.get("/info-user")
 async def get_user(dni: int) -> UserResponseDTO | None:
-    return search_user("dni", dni)
+    user = search_user("dni", dni)
+    if user is not None:
+        return user
+    else:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Usuario no encontrado")
+
+        
