@@ -48,7 +48,7 @@ class TestUsers(unittest.TestCase):
     def test_create_user(self):
         """self: es una referencia al objeto actual."""
         response = self.client.post("/user/new-user", json={
-            "dni": 34556332,
+            "dni": 34556342,
             "username": "ferrari1234"
         })
 
@@ -58,7 +58,7 @@ class TestUsers(unittest.TestCase):
         """Verifica que la clave "uuid" exista en la respuesta."""
         self.assertIn("uuid", data)
         """Verifica que el DNI devuelto sea el correcto."""
-        self.assertEqual(data["dni"], 34556332)
+        self.assertEqual(data["dni"], 34556342)
         """Verifica que el saldo inicial sea 20000."""
         self.assertEqual(data["saldo"], 20000.0)
 
