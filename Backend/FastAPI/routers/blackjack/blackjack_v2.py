@@ -1,7 +1,8 @@
-from fastapi import APIRouter, status
+from fastapi import APIRouter, HTTPException, status
 from uuid import uuid4
 import random
 from routers.dataBase.users_db import search_uuid
+from routers.dataBase.users_db import search_user
 
 router = APIRouter(
     prefix="/v2/blackjack",
@@ -55,6 +56,13 @@ def calcular_puntos(cartas):
 
 @router.post("/new-game")
 async def new_game(dni: int):
+    existing_user = search_user("dni", dni)
+    if existing_user is None:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Usuario no existe"
+        )
+
     user_id = search_uuid(dni)
     
     mazo = [
@@ -111,7 +119,8 @@ async def hit(user_id: str):
 
     return {
         "puntos": puntos,
-        "carta": partida["jugador"]        
+        "carta": partida["jugador"],
+        "mazo": partida["mazo"]
     }
 
 @router.post("/stand/{user_id}")
