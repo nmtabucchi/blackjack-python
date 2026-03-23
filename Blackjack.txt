@@ -1,0 +1,74 @@
+https://www.crehana.com/blog/estilo-vida/guia-reglas-blackjack/
+https://www.pokerstars-01.com/es-419/casino/how-to-play/blackjack/rules/?&no_redirect=1
+
+Blacjack clásico
+
+Participantes
+	-Crupier
+	-Jugador
+ 
+Cartas	|	Valor
+-------------------
+	1   |	1 o 11
+	2   |		2
+	3   |		3
+	4   |		4
+	5   |		5
+	6   |		6
+	7   |		7
+	8   |		8
+	9   |		9
+	10  |		10
+	J   |		10
+	Q   |		10
+	K   |		10
+	
+Versión 1:
+	Acciones
+		-Repartir inicio (a crupier o jugador): dos cartas a crupier y una al jugador
+		-Pedir: jugador puede pedir la cantidad de cartas que quiera
+		-Repartir crupier: si tiene 16 o menos está obligado a pedir otra carta. Si tiene 17 o más está obligado a plantarse
+		
+Versión 2:
+	Apuesta (guardar monto en base de datos de cada jugador)
+	
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Importante (nivel profesional)
+
+👉 Próximo nivel:
+		-partidas por usuario o ID
+		-WebSockets
+		-persistencia
+		-tests
+
+Si querés, seguimos con:
+	-partidas múltiples
+	-/reset
+	-estructura Game
+	-FastAPI + WebSockets
+	
+	
+	
+	Arquitectura que te recomiendo (nivel senior)
+		Separá lógica de API:
+			blackjack_service.py
+			👉 reglas del juego
+
+			router
+			👉 solo HTTP
+	Esto es MUY valorado laboralmente.
+	
+Próximo salto (te lo recomiendo fuerte)
+	Si querés convertir esto en un backend serio:
+		👉 agregar apuestas
+		👉 múltiples mazos
+		👉 soft/hard ace
+		👉 blackjack natural
+		👉 split
+		👉 doble
+	💥 Con esto ya podés mostrarlo en un portfolio.
+	
+	
+Por qué NO deberías guardar partidas en un diccionario global y como deberia hacerlo?
+	Mejor opción para juegos → Redis
