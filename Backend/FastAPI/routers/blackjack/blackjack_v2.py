@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException, status
 from uuid import uuid4
 import random
-from routers.dataBase.users_db import search_uuid
-from routers.dataBase.users_db import search_user
+from Backend.FastAPI.routers.dataBase.users_db import search_uuid
+from Backend.FastAPI.routers.dataBase.users_db import search_user
 
 router = APIRouter(
     prefix="/v2/blackjack",

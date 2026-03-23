@@ -1,10 +1,10 @@
 ### Users DB API ###
 
 from fastapi import APIRouter, HTTPException, status
-from negocio.models.user import User
-from negocio.dto.user_dto import UserResponseDTO
-from dataBase.client import db_client
-from dataBase.schemas.user import user_schema
+from Backend.FastAPI.negocio.models.user import User
+from Backend.FastAPI.negocio.dto.user_dto import UserResponseDTO
+from Backend.FastAPI.dataBase.client import db_client
+from Backend.FastAPI.dataBase.schemas.user import user_schema
 from uuid import uuid4
 
 router = APIRouter(prefix="/user", tags=["Usuarios"],
